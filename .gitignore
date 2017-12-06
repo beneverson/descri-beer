@@ -1,0 +1,12 @@
+notebooks/.ipynb_checkpoints
+beer/__pycache__
+*.pyc
+*.bin
+*.vec
+*.gz
+*.zip
+*.csv
+*.pandas
+*.pkl
+*.ann
+data/*.txt
