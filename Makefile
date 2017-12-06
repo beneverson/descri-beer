@@ -1,6 +1,8 @@
 data: data/raw/Ratebeer.txt data/raw/beerdf.pandas
 	# parse the ratebeer reviews into a csv
 	scripts/parse_reviews.py
+
+vector_data: data/interim/ratebeer.csv
 	# create the training data for fasttext vectors
 	scripts/make_fasttext_data.py --data data/interim/ratebeer.csv --input_type csv
 	scripts/make_fasttext_data.py --data data/raw/beerdf.pandas --input_type pickle
@@ -24,6 +26,6 @@ clean:
 	rm -r models/tfidf_index.ann
 	rm -r models/tfidf_model.pkl
 
-all: data vectors model
+all: data vector_data vectors model
 
 .PHONY: data vectors model all

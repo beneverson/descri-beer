@@ -44,7 +44,7 @@ def main():
     parser.add_argument('--review_column', type=str, default='review/text',
                         help='column of input data containing review text')
     parser.add_argument('--outfile', type=str,
-                        default='/data/interim/reviews_raw.txt',
+                        default='data/interim/reviews_raw.txt',
                         help='path to write cleaned review text')
     args = parser.parse_args()
     # parse the input file into a list of (unmodified) review string
@@ -54,7 +54,7 @@ def main():
         reviews = parse_csv(args.data, args.review_column)
     # clean review strings, merge into single string
     cleaned_reviews = clean_merge_reviews(reviews)
-    # write out the merged string into the outfile, in append mode
+    # write out the merged string into the outfile
     with open(args.outfile, 'a+') as f:
         f.write(cleaned_reviews)
 
