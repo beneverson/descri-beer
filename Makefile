@@ -1,13 +1,18 @@
 data: data/raw/Ratebeer.txt data/raw/beerdf.pandas
+	# create directories
+	mkdir -p data/raw
 	# parse the ratebeer reviews into a csv
 	scripts/parse_reviews.py
 
 vector_data: data/interim/ratebeer.csv
+	# create directories
+	mkdir -p data/interim
 	# create the training data for fasttext vectors
 	scripts/make_fasttext_data.py --data data/interim/ratebeer.csv --input_type csv
 	scripts/make_fasttext_data.py --data data/raw/beerdf.pandas --input_type pickle
 
 vectors: data/interim/reviews_raw.txt 
+	mkdir -p models
 	# train fasttext vectors
 	fasttext skipgram -input data/interim/reviews_raw.txt -output models/beervectors
 
